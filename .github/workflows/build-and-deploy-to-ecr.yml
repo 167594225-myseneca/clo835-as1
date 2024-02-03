@@ -32,7 +32,7 @@ jobs:
         ECR_REPOSITORY: jculloa-ecr
         IMAGE_TAG: v1.0
       run: |
-        cd Chapter02/kubia/
+        cd app/
         ls -ltra
         # Docker build
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
