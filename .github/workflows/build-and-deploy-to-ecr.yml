@@ -35,10 +35,8 @@ jobs:
         cd app/
         ls -ltra
         # Docker build
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        # Unit test
-        docker run -d -p 8080:8080 --name nodeapp $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        docker ps
-        echo "Pause for 10 seconds to let container start"
-        sleep 10
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY"_APP":$IMAGE_TAG .
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY"_MySQL":$IMAGE_TAG -f Dockerfile_msql
+        # Docker Push
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY"_APP":$IMAGE_TAG
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY"_MySQL":$IMAGE_TAG
