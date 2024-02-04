@@ -37,9 +37,6 @@ data "aws_availability_zones" "available" {
 }
 
 
-# Data source to use the default VPC
-
-
 # Adding SSH key to Amazon EC2
 resource "aws_key_pair" "clo835-host-kp" {
   key_name   = "clo835-host-kp"
@@ -59,9 +56,9 @@ resource "aws_security_group" "host-ec2-sg" {
   }
 
   ingress {
-    description = "80 from the internet"
-    from_port   = 80
-    to_port     = 80
+    description = "8081-8083 from the internet"
+    from_port   = 8081
+    to_port     = 8083
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -97,7 +94,7 @@ resource "aws_instance" "clo835-host-EC2" {
 # ECR
 resource "aws_ecr_repository" "clo835-ecr" {
   name                 = "jculloa-ecr"
-  image_tag_mutability = "IMMUTABLE"
+  image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
     scan_on_push = true
