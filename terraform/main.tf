@@ -103,15 +103,6 @@ resource "aws_ecr_repository" "clo835-ecr" {
 
 
 /*
-# IAM instance profile
-
-resource "aws_iam_instance_profile" "ec2toecr" {
-  name = "ec2toecr"
-  role = "arn:aws:iam::796109909635:instance-profile/LabInstanceProfile"
-}
-
-
-
 
 resource "aws_iam_instance_profile" "ec2toecr" {
   name = "ec2toecr"
