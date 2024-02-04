@@ -72,7 +72,7 @@ resource "aws_security_group" "host-ec2-sg" {
 }
 
 
-# Step 12 - EC2 creation
+# EC2 creation
 resource "aws_instance" "clo835-host-EC2" {
   ami                         = data.aws_ami.latest_amazon_linux.id
   instance_type               = var.instance_type
@@ -103,15 +103,6 @@ resource "aws_ecr_repository" "clo835-ecr" {
 
 
 /*
-# IAM instance profile
-
-resource "aws_iam_instance_profile" "ec2toecr" {
-  name = "ec2toecr"
-  role = "arn:aws:iam::796109909635:instance-profile/LabInstanceProfile"
-}
-
-
-
 
 resource "aws_iam_instance_profile" "ec2toecr" {
   name = "ec2toecr"
