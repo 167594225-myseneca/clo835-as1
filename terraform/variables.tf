@@ -21,3 +21,16 @@ variable "prefix" {
   type        = string
   description = "Name prefix"
 }
+
+/*
+variable "default-vpc" {
+  default = ["172.31.0.0/16"]
+  type = string
+  description = "default vpc"
+}
+
+
+variable "public-subnet" {
+  default = ["10.31.0.0/20"]
+}
+*/
