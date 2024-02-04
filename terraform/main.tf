@@ -19,6 +19,7 @@ provider "aws" {
 ########### RESOURCE BLOCKS ###############################
 ###########################################################
 
+
 # Data source for AMI
 data "aws_ami" "latest_amazon_linux" {
   owners      = ["amazon"]
@@ -88,6 +89,7 @@ resource "aws_instance" "clo835-host-EC2" {
     }
   )
 }
+
 
 
 # ECR
