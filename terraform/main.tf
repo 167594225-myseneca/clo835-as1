@@ -72,7 +72,7 @@ resource "aws_security_group" "host-ec2-sg" {
 }
 
 
-# Step 12 - EC2 creation
+# EC2 creation
 resource "aws_instance" "clo835-host-EC2" {
   ami                         = data.aws_ami.latest_amazon_linux.id
   instance_type               = var.instance_type
