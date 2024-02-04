@@ -36,6 +36,7 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
+
 # Data source to use the default VPC
 
 
@@ -82,6 +83,7 @@ resource "aws_instance" "clo835-host-EC2" {
   vpc_security_group_ids      = [aws_security_group.host-ec2-sg.id]
   associate_public_ip_address = true
   user_data                   = file("${path.module}/install_docker.sh")
+  iam_instance_profile        = "LabInstanceProfile"
 
   tags = merge(var.default_tags,
     {
@@ -101,3 +103,40 @@ resource "aws_ecr_repository" "clo835-ecr" {
     scan_on_push = true
   }
 }
+
+
+/*
+# IAM instance profile
+
+resource "aws_iam_instance_profile" "ec2toecr" {
+  name = "ec2toecr"
+  role = "arn:aws:iam::796109909635:instance-profile/LabInstanceProfile"
+}
+
+
+
+
+resource "aws_iam_instance_profile" "ec2toecr" {
+  name = "ec2toecr"
+  role = aws_iam_role.labrole.name
+}
+
+data "aws_iam_policy_document" "assume_role" {
+  statement {
+    effect = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["ec2.amazonaws.com"]
+    }
+
+    actions = ["sts:AssumeRole"]
+  }
+}
+
+resource "aws_iam_role" "labrole" {
+  name               = "labrole"
+  path               = "/"
+  assume_role_policy = data.aws_iam_policy_document.assume_role.json
+}
+*/
