@@ -1,4 +1,4 @@
-# Step 10 - Add output variables
+# Add output variables
 
 output "public_ip" {
   value = aws_instance.clo835-host-EC2.public_ip
